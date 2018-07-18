@@ -1,0 +1,10 @@
+things to fix:
+feature test will fail tomorrow because it is hard coded
+missing leading zeroes 00 in print statement
+seperate object for print statement
+	break print function into smaller chunk
+Use Prettier
+Working on Readability: inconsistant code
+remove commented out code
+dependencies
+
