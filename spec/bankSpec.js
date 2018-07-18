@@ -1,6 +1,7 @@
 describe('Bank', function(){
 	beforeEach(function(){
-		bank = new Bank(Transaction);
+		let printer = new Printer();
+		bank = new Bank(Transaction, printer);
 	});
 
 	describe('#account', function(){
