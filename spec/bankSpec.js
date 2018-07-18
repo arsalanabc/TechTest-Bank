@@ -1,13 +1,5 @@
 describe('Bank', function(){
 	beforeEach(function(){
-		//var transaction = jasmine.createSpyObj('Transaction', ['getDate','getType','getAmount','getBalance']);
-		// let transaction = {
-		// 		getType: function(){},
-		// 		getDate: function(){},
-		// 		getAmount: function(){},
-		// 		getBalance: function(){}
-		// };
-
 		bank = new Bank(Transaction);
 	});
 
