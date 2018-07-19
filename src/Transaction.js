@@ -1,6 +1,5 @@
-var Transaction = function(type, amount, balance){
+var Transaction = function(amount, balance){
 	this.date = setDate();
-	this._type = type
 	this.amount = amount
 	this.balance = balance
 }
