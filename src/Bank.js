@@ -11,42 +11,22 @@ Bank.prototype.seeBalance = function() {
 
 Bank.prototype.deposit = function(amount){
 	this._balance += amount;
-	this._list_of_transactions.push(this.makeTransaction("Debit", amount));
+	this._list_of_transactions.push(this.makeTransaction(amount, this._balance));
 };
 
 Bank.prototype.withdraw = function(amount) {
-	this._balance -= amount;
-	this._list_of_transactions.push(this.makeTransaction("Credit", amount))
+	this.deposit(-amount)
 };
 
 Bank.prototype.transactions = function() {
 	return this._list_of_transactions;
 };
 
-Bank.prototype.makeTransaction = function(type, amount) {
-	let transaction =  new this._transaction(type, amount, this._balance);
+Bank.prototype.makeTransaction = function(amount) {
+	let transaction = new this._transaction(amount, this._balance);
 	return transaction;
 };
 
 Bank.prototype.printStatement = function() {
-	
-	let transactionString = "date || credit || debit || balance \n";
-	transactions = this._list_of_transactions;
-
-	for(var i = 0; i<transactions.length; i++){
-
-		transactionString+=transactions[i].getDate()+" ||"
-		
-		if(transactions[i].getType() == "Credit")
-		{
-			transactionString+=" "+transactions[i].getAmount()+" ||"	
-		} 
-		else if(transactions[i].getType() == "Debit")
-		{
-			transactionString+=" || "+transactions[i].getAmount()	
-		}
-
-		transactionString+= " || "+transactions[i].getBalance()+"\n"
-	}
-	this.printer.logstatement(transactionString);
+	this.printer.logStatement(this._list_of_transactions);
 };

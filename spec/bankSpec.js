@@ -1,6 +1,9 @@
 describe('Bank', function(){
 	beforeEach(function(){
-		let printer = new Printer();
+		let printer = {
+			printStatement: function(){},
+			logStatement: function(){}
+		};
 		bank = new Bank(Transaction, printer);
 	});
 
@@ -45,7 +48,6 @@ describe('Bank', function(){
 				expect(bank._transaction).toEqual(Transaction);
 			});
 
-
 			it('stores transactions', function(){
 				
 				expect(bank.transactions()).toEqual([]);
@@ -54,7 +56,7 @@ describe('Bank', function(){
 			it('one transaction', function(){
 				bank.deposit(2);
 
-				transaction = new Transaction("Debit", 2, bank.seeBalance())
+				transaction = new Transaction(2, bank.seeBalance())
 
 				expect(bank.transactions()).toEqual([transaction]);
 			});
@@ -62,13 +64,13 @@ describe('Bank', function(){
 			it('multiple transactions', function(){
 
 				bank.deposit(20);
-				transaction_1 = new Transaction("Debit", 20, bank.seeBalance())
+				transaction_1 = new Transaction(20, bank.seeBalance());
 
 				bank.withdraw(12);
-				transaction_2 = new Transaction("Credit", 12, bank.seeBalance())
+				transaction_2 = new Transaction(-12, bank.seeBalance());
 
 				bank.deposit(3);
-				transaction_3 = new Transaction("Debit", 3, bank.seeBalance())
+				transaction_3 = new Transaction(3, bank.seeBalance());
 
 				expect(bank.transactions()).toEqual([transaction_1,transaction_2,transaction_3]);
 			});
